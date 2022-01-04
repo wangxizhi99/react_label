@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>hello_reavt</title>
+  <!-- 引入核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+<body>
+  <div id="test"></div>
+  <script type="text/babel">
+    // 创建一个虚拟dom
+    let vDOM = <h1>hello,react</h1> 
+    //渲染虚拟dom并插入
+    ReactDOM.render(vDOM,document.getElementById('test'))
+  </script>
+</body>
+</html>
