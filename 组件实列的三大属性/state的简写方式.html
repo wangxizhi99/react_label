@@ -12,21 +12,15 @@
   <div id="test"></div>
   <script type="text/babel">
     class Weather extends React.Component{
-      constructor(props){ // 构造器
-        super(props)
-        this.state = {isHot:false}//初始化状态
-        // 给实列自身加一个同名的方法，这个方法屎更具原型上的方法用bind生成的，this的指向没有问题
-        this.changeWeather = this.changeWeather.bind(this)
-      }
+
+      state = {isHot:false}//初始化状态
       render(){
         console.log(this)
         const {isHot} = this.state
         return <h1 onClick={this.changeWeather}>今天是真他妈的{isHot ? '炎热':'寒冷'}</h1>
       }
-      changeWeather(){
-        //获取isHot的值
-        // console.log(this)
-        //取反赋回去,注意state不能直接修改，必须用setState
+      changeWeather = () => {//组件类中，定义的回调函数必须写成复制语句加箭头函数，避免this为undefinde的问题
+        console.log(this)
         let isHot = this.state.isHot
         this.setState({isHot:!isHot})
       }
