@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>使用js创建虚拟DoM</title>
+  <!-- 引入核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="test"></div>
+  <script type="text/javascript">
+    // 创建一个虚拟dom
+    let VDOM =  React.createElement('h1',{id:'atguigu'},'hello,react')
+    //渲染虚拟dom并插入
+    ReactDOM.render(VDOM,document.getElementById('test'))
+
+    // 关于jsx出现就是为更方便写虚拟DOM
+  </script>
+</body>
+</html>

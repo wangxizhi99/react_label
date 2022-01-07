@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>复习js中的类</title>
+  <!-- 引入核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+  <div id="test"></div>
+  <script type="text/javascript">
+    //1,类中的构造器不是必须要写的，如果要给类添加一些自己独有的属性，就要写构造器
+    //2,如果A类继承了B类，且类中写了构造器，那么A类的构造器中必须使用super
+    //3,类中的方法是放在类的原型对象中的，供实列使用，如果是通过实列调用的方法，那么方法中的this就是实列对象。
+
+
+    // 定义组件（类格式）
+    class Person {//定义类   
+      constructor(name,age){//构造方法
+        this.name = name
+        this.age = age
+      }
+      speak(){//一般方法
+        //1,speak放在了那里----Person的原型对象上，供实列使用
+        //2，speak中的this是谁？-----如果speak是通过Person实列调用的，那么this就是Person的实列对象
+        console.log(`我他妈叫${this.name},老子今年${this.age}岁了`)
+      }
+    }
+
+    class Student extends Person{//定义一个Student类继承于Person
+      constructor(name,age,grade){
+        super(name,age)
+        this.grade = grade
+      }
+      speak(){//这叫重写从父类继承过来的方法
+        console.log(`我他妈叫${this.name},老子今年${this.age}岁了,你爹今年上${this.grade}了`)
+      }
+      stuty(){
+        console.log('你爹在很努力的学习',this)
+      }
+        //1,stuty放在了那里----stuty的原型对象上，供实列使用
+        //2，stuty中的this是谁？-----如果stuty是通过Student实列调用的，那么this就是Student的实列对象
+    }
+    let s = new Student('周润发',18,'高二')
+    console.log(s)
+    s.speak()
+    s.stuty()
+  // let p = new Person('吴彦祖',55)
+  // console.log(p)
+  // p.speak()
+  </script>
+</body>
+</html>
