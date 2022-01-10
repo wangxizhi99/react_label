@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React三大属性--回调形式的ref</title>
+  <!-- 引入核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+  <div id="test"></div>
+  <script type="text/babel">
+    class Demo extends React.Component{
+      render(){
+        return(
+          <div>
+            <input type="text" ref={c => this.input1 = c}/>&nbsp;
+            <button onClick={this.show}>点我提示数据</button>&nbsp;
+            <input type="text" ref={c => this.input2 = c}  onBlur={this.show2} placeholder="失去焦点"/>
+          </div>
+        )
+      }
+      show =()=>{
+       let {input1} = this
+       alert(input1.value)
+      }
+      show2 = () =>{
+       let {input2} = this
+       alert(input2.value)
+      }
+    }
+    ReactDOM.render(<Demo/>,document.getElementById('test'))
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React三大属性--回调形式的ref</title>
+  <!-- 引入核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+  <div id="test"></div>
+  <script type="text/babel">
+    /*
+      1,类式组件中的构造器完全可以忽略
+      2,如果写了构造器，super必须要调用，而且需要在构造器中通过this.props取值，那么props要传给super
+    */
+    class Demo extends React.Component{
+      constructor(){
+        super()
+      }
+      render(){
+        let {name,age} = this.props
+        return <h2>他妈是条狗叫{name}，今年{age}岁</h2>
+      }
+      
+    }
+    ReactDOM.render(<Demo name='旺财' age={59}/>,document.getElementById('test'))
+  </script>
+</body>
+</html>

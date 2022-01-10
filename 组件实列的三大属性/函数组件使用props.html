@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>函数组件使用props</title>
+  <!-- 引入核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+</head>
+<body>
+  <div id="test"></div>
+  <script type="text/babel">
+    function Person(props){
+      let {name,sex,age} = props
+      return(
+        <ul>
+          <li>年龄:{age}</li>  
+          <li>性别:{sex}</li>  
+          <li>姓名:{name}</li>  
+        </ul>
+      )
+    }
+    Person.propTypes = {//给props收到的值做限制
+        name:PropTypes.string.isRequired,//限制这个属性必须传 
+        age:PropTypes.number,
+        sex:PropTypes.string,
+      }
+      Person.defaultProps ={//限制如果属性没有收到值，则给一个默认值
+        age:18
+      }
+    ReactDOM.render(<Person name="楼阁话" sex="男" age={99}/>,document.getElementById('test'))
+  </script>
+</body>
+</html>

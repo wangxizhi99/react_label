@@ -2,27 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>React三大属性--props的基本使用</title>
+  <title>React三大属性--props的限制</title>
   <!-- 引入核心库 -->
   <script type="text/javascript" src="../js/react.development.js"></script>
   <script type="text/javascript" src="../js/react-dom.development.js"></script>
   <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/javascript" src="../js/prop-types.js"></script>
 </head>
 <body>
   <div id="test"></div>
   <div id="text"></div>
   <script type="text/babel">
     class Weather extends React.Component{//定义组件
+      state = {}//将限制方法加在类自己身上
+      static propTypes = {//给props收到的值做限制
+        name:PropTypes.string.isRequired,//限制这个属性必须传
+        age:PropTypes.number,
+        sex:PropTypes.string,
+      }
+      static defaultProps ={//限制如果属性没有收到值，则给一个默认值
+        age:18
+      }
+
       render(){
         let {name,age,sex} = this.props//解构赋值
-        /*
-          let name = this.props.name
-          let sex = this.props.sex
-          let age = this.props.age
-        */
-
-      //  props中的属性是只读的不允许直接修改
-       age = 99
         return (
           <ul>
             <li>年龄:{age}</li>  
@@ -32,18 +35,16 @@
         )
       }
     }
-    ReactDOM.render(<Weather name="楼阁话" sex="男" age="50"/>,document.getElementById('test'))
+
+    ReactDOM.render(<Weather name="楼阁话" sex="男" age={99}/>,document.getElementById('test'))
 
     // 模拟数据
     const p = {
       name:'bskj',
-      age:'djgk',
+      age:44,
       sex:'kslfdbjl'
     }
-    //分别传递
-    // ReactDOM.render(<Weather name={p.name} sex={p.sex} age={p.age}/>,document.getElementById('test'))
-    //批量传递
-    //在jsx中可以使用展开语法展开一个对象，但是仅限于传递标签属性
+    //展开语法，拆包一个对象
     ReactDOM.render(<Weather {...p} />,document.getElementById('text'))
   </script>
 </body>
